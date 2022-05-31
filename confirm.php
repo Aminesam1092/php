@@ -27,6 +27,18 @@
             unlink('upload/'.$filename); //ファイルが画像ファイルではないのでファイルを削除する。
             $filename = '';
         }
+        else{
+            //きちんとした画像ファイルが登録されている
+            //画像のリサイズ
+            $w = 250;
+            $h = 250;
+            copy ('upload/',$filename,'upload/thumb_'.$filename);//画像を複製
+            list($width,$height) = getimagesize('upload/thumb_'.$filename);
+            if($width > $height){
+                $nWidth = $w;
+                $nHeight = $height/($width/$w);
+            }
+        }
         }
     }
 ?>
@@ -76,6 +88,17 @@
                 <?php
                     print($age);
                 ?>
+            </dd>
+            <dt>ファイル</dt>
+            <dd>
+                <?php 
+            if(strlen( $filename) > 0){//strlen() 指定した変数の文字数を返すd
+                print('<img src="upload/'.$filename.'" alt="">');//imgタグを出力する
+            }
+            else(
+                print('画像がありません');
+            )
+            ?>
             </dd>
             <dt>
                 コメント:
