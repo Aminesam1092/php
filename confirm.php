@@ -17,6 +17,13 @@
         $filename = $_FILES["image"]["name"];
         $filename = date("YmdHis").'_'.$filename;
         move_uploaded_file($tmp_filename,'upload/'.$filename);
+
+        if (file_exists('upload/'.$filename)){
+        $type =  exif_imagetype('upload/'.$filename);
+        if(($type != IMAGETYPE_JPEG) && ($type != IMAGETYPE_PNG) && ($type != IMAGETYPE_WEBP)){
+            
+        }
+        }
     }
 ?>
 
