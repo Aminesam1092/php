@@ -4,6 +4,7 @@
     $remail = htmlspecialchars($_POST["remail"],ENT_QUOTES);
     $age = htmlspecialchars($_POST["age"],ENT_QUOTES);
     $comment = nl2br(htmlspecialchars($_POST["comment"],ENT_QUOTES));
+    $filename = '';//変数filename を空文字で初期化しておく
 
     if($email != $remail){//$emailと$remailの中身が異なる
         //→異なっている場合に実行
@@ -21,7 +22,10 @@
         if (file_exists('upload/'.$filename)){
         $type =  exif_imagetype('upload/'.$filename);
         if(($type != IMAGETYPE_JPEG) && ($type != IMAGETYPE_PNG) && ($type != IMAGETYPE_WEBP)){
-            
+            //画像形式がJPEGでもPNGでもWEBPでもない場合は使えない。
+            $error = '画像形式が違います。';
+            unlink('upload/'.$filename); //ファイルが画像ファイルではないのでファイルを削除する。
+            $filename = '';
         }
         }
     }
@@ -29,12 +33,14 @@
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <main>
         <h1>お問合せフォームの確認</h1>
@@ -89,4 +95,5 @@
         </form>
     </main>
 </body>
+
 </html>
