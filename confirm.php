@@ -11,8 +11,7 @@
         header('Location:index.php?err=mail');//index.phpに飛ばす
     }
 
-
-    if(isset($_FILES["images"])){
+    if(isset($_FILES["image"])){
         //ファイルが指定されているのでファイルの処理を行う。
         $tmp_filename = $_FILES["image"]["tmp_name"];//一時的に付けられたファイル名を取得。
         $filename = $_FILES["image"]["name"];

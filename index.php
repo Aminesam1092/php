@@ -21,13 +21,12 @@
     <main>
         <h1>お問合せフォーム</h1>
         <p><?php print($errtext); ?></p>
-        <form name="form1" method="post" action="confirm.php" enctype="multipart/form-data"></form>
         <p>
             <?php
                 print($errtext);
             ?>
         </p>
-        <form name="form1" method="post" action="confirm.php">
+        <form name="form1" method="post" action="confirm.php" enctype="multipart/form-data">
             <dl>
                 <dt>
                     <label for="name">
@@ -59,7 +58,7 @@
                     </label>
                 </dt>
                 <dt><label for="image">画像ファイル</label></dt>
-                <dd><input type="file" name="image" id="image" accept="image/**"></dd>
+                <dd><input type="file" name="image" id="image" accept="image/*"></dd>
                 <dd>
                     <input type="number" name="age" id="age">
                 </dd>
