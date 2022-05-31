@@ -35,7 +35,7 @@
                     </label>
                 </dt>
                 <dd>
-                    <input type="text" name="name" id="name" placeholder="山田太郎s">
+                    <input type="text" name="name" id="name" placeholder="山田太郎">
                 </dd>
                 <dt>
                     <label for="email">
