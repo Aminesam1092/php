@@ -17,6 +17,7 @@
         $tmp_filename = $_FILES["image"]["tmp_name"];//一時的に付けられたファイル名を取得。
         $filename = $_FILES["image"]["name"];
         $filename = date("YmdHis").'_'.$filename;
+        move_uploaded_file($tmp_filename,'upload/'.$filename);
     }
 ?>
 
