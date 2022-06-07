@@ -6,7 +6,10 @@ $dbh = new PDO($dsn,DBUSER,DBPASS);
 $sql = "SELECT * FROM data WHERE deflag = 0 CRDER BY id DESC";
 $stmt = $dbh ->prepare($sql);
 $stmt->execute();
-$output = '';
+while($result = $stmt->fetch(PRO::FETCH_ASSOC)){
+$output = '<div class="item"><p>Name:'.$result["name"].'</p><p>Email:'.$result["email"].'</p><p>Age:'.$result["age"].'</P></div>';
+
+}
 ?>
 
 <!DOCTYPE html>
