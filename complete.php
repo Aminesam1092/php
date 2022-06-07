@@ -20,6 +20,8 @@ session_start();
     $comment = nl2br(htmlspecialchars($_POST["comment"],ENT_QUOTES));
     /*---MAMP環境では実行不可---*/
     //お問い合わせ内容をメールで送信する場合
+    $regtime = date("Y-m-d H:i:s");
+    $sql = "INSERT INTO data VALUES(NULL,$name,$email,$age,$comment,0)";
     $tomail = '';//送信先(宛先)メールアドレス
     $frommail = '';//送信元(差出人)メールアドレス
     mb_language("japanese");
