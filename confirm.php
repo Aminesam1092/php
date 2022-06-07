@@ -36,7 +36,17 @@
             list($width,$height) = getimagesize('upload/thumb_'.$filename);
             if($width > $height){
                 $nWidth = $w;
-                $nHeight = $height/($width/$w);
+                $nHeight = $height/($width/$w);//縮小比率を算出して高さサイズを算出する
+            }
+            else{
+                $nWidth = $width/($height/$h);
+                $nHeight = $h;
+            }
+            $img = imagecreatetruecolor($nWidth,$nHeight);//カンバス作成
+            if($type == IMAGETYPE_JPEG){
+                $src = imagecreatefromjpeg('upload/thumb_'.$filename);
+                imagecopyresized($img,$src,0,0,0,0,$nWidth,$nHeight,$width,$height);
+                imagejpeg($img, 'upload/thumb_'.$filename);
             }
         }
         }
@@ -93,11 +103,9 @@
             <dd>
                 <?php 
             if(strlen( $filename) > 0){//strlen() 指定した変数の文字数を返すd
-                print('<img src="upload/'.$filename.'" alt="">');//imgタグを出力する
+                print('<img src="upload/thumb_'.$filename.'" alt="">');//imgタグを出力する
             }
-            else(
-                print('画像がありません');
-            )
+
             ?>
             </dd>
             <dt>

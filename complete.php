@@ -1,17 +1,15 @@
 <?php
+
+session_start();
+
+    require 'define.inc.php';//define.inc.php ファイルを読み込む
+
+
+
     $name = htmlspecialchars($_POST["name"],ENT_QUOTES);
     $email = htmlspecialchars($_POST["email"],ENT_QUOTES);
     $age = htmlspecialchars($_POST["age"],ENT_QUOTES);
     $comment = nl2br(htmlspecialchars($_POST["comment"],ENT_QUOTES));
-
-    $fp = fopen('data.txt','a');
-    //data.txtというファイルを追記モード(ファイルがなければ自動的に作成する)で開く
-    $content = $name.','.$email.','.$age.','.$comment."\n";
-    //"\n"で改行を示す。書き込む内容を生成
-    if(!fwrite($fp,$content)){//先頭に!をつけることで逆転させる
-        //書き込みに失敗した場合にここが実行される
-        print('書き込みに失敗しました。');
-    }
     /*---MAMP環境では実行不可---*/
     //お問い合わせ内容をメールで送信する場合
     $tomail = '';//送信先(宛先)メールアドレス
