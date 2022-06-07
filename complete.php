@@ -3,9 +3,17 @@
 session_start();
 
     require 'define.inc.php';//define.inc.php ファイルを読み込む
-
-
-
+    $dsn = 'mysql:dbname='.DBNAME.';host='.DBHOST;
+    try{
+        $dbh = new PDO($dsn,DBUSER,DBPASS);//データベースに接続する
+    }
+    catch(PDOException $e) {
+        //データベースへ接続できないwらーが発生したらここを実行する
+    print('DBへ接続出来ません'.$e->getMessage());
+    //$e->getMessage()にはDBへ接続出来ないエラー内容が入ってくる。
+    exit();
+    
+    }
     $name = htmlspecialchars($_POST["name"],ENT_QUOTES);
     $email = htmlspecialchars($_POST["email"],ENT_QUOTES);
     $age = htmlspecialchars($_POST["age"],ENT_QUOTES);
