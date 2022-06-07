@@ -21,7 +21,13 @@ session_start();
     /*---MAMP環境では実行不可---*/
     //お問い合わせ内容をメールで送信する場合
     $regtime = date("Y-m-d H:i:s");
-    $sql = "INSERT INTO data VALUES(NULL,$name,$email,$age,$comment,0)";
+    $sql = "INSERT INTO data VALUES(NULL,?,?,?,?,'$regtime',0)";
+
+    $stmt = $dnh->prepare($sql);
+    $stmt->execute(array($name,$email,$age,$comment));
+
+
+
     $tomail = '';//送信先(宛先)メールアドレス
     $frommail = '';//送信元(差出人)メールアドレス
     mb_language("japanese");
